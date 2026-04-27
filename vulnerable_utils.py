@@ -15,7 +15,8 @@ def load_session():
     session_data = request.args.get("data")
     decoded = base64.b64decode(session_data)
     user = json.loads(decoded)
-    return f"Welcome back, {user.get('name', 'unknown')}"
+    return jsonify({"message": "Welcome back", "name": user.get("name", "unknown")})
+
 
 # ----------------------------------------------------------------
 # FIX VULN #2: Weak Cryptography / Broken Hash (CWE-328)
